@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="tr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>mesaj.</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0b1310">
+<link rel="apple-touch-icon" href="icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#e6ebe0;--pn:#fafbf7;--ink:#12201a;--mu:#66756c;--ln:#dfe5da;--out:#12372a;--oi:#eaf7d0;--in:#fff;--cb:#eaefe5;--dot:#d6ddd0;--hv:#f1f4ec;--lime:#c6f432;--fd:"Bricolage Grotesque",system-ui,sans-serif;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#050908;--pn:#0e1512;--ink:#ecf3e8;--mu:#8a9a90;--ln:#1a251f;--out:#c6f432;--oi:#0d1a06;--in:#18231d;--cb:#0a110e;--dot:#131d18;--hv:#141d18}}
+:root[data-theme="dark"]{--bg:#050908;--pn:#0e1512;--ink:#ecf3e8;--mu:#8a9a90;--ln:#1a251f;--out:#c6f432;--oi:#0d1a06;--in:#18231d;--cb:#0a110e;--dot:#131d18;--hv:#141d18}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+button{font:inherit;border:0;background:none;color:inherit;cursor:pointer}
+input,textarea{font:inherit;font-size:16px;color:var(--ink)}
+:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+h1,h2,b{font-family:var(--fd)}
+h1 b{color:var(--out)}
+[hidden]{display:none!important}
+#auth{display:grid;grid-template-columns:1.1fr 1fr;height:100%}
+.hero{background:#0b1310;color:#eef5e6;display:flex;flex-direction:column;justify-content:flex-end;padding:40px;background-image:radial-gradient(#1b2a22 1.2px,transparent 1.2px);background-size:22px 22px}
+.hero h1{margin:0;font-size:clamp(64px,13vw,150px);line-height:.85;letter-spacing:-.05em;font-weight:800}
+.hero h1 b{color:var(--lime)}
+.hero p{margin:14px 0 0;color:#9db0a4;font-size:18px}
+#af{align-self:center;justify-self:center;width:min(380px,88%);display:flex;flex-direction:column;gap:12px}
+#af h2{margin:0 0 6px;font-size:30px;letter-spacing:-.03em}
+#af input,#nf input,#q{padding:13px 16px;border:1px solid var(--ln);border-radius:14px;background:var(--pn);flex:1;min-width:0}
+.remember-row{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--mu);cursor:pointer;user-select:none;margin:2px 0}
+.remember-row input[type="checkbox"]{accent-color:var(--lime);width:18px;height:18px;cursor:pointer;flex:none}
+.pri{padding:13px 18px;border-radius:14px;background:var(--lime);color:#10200a;font-weight:700;transition:transform .12s}
+.pri:active,#send:active{transform:scale(.94)}
+.lnk{color:var(--mu);font-size:14px;padding:6px}
+#app{display:grid;grid-template-columns:360px 1fr;height:100%;max-width:1240px;margin:0 auto;background:var(--pn)}
+#side,#main{display:flex;flex-direction:column;min-height:0;min-width:0}
+#side{border-right:1px solid var(--ln)}
+.top{display:flex;align-items:center;gap:8px;padding:16px 16px 10px}
+.top h1{flex:1;margin:0;font-size:30px;font-weight:800;letter-spacing:-.05em}
+.ib{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:var(--hv);font-size:18px}
+#nf{display:flex;gap:8px;margin:0 16px 8px}
+#q{flex:none;margin:0 16px 8px}
+#list{flex:1;overflow-y:auto;padding:4px 8px}
+.it{display:flex;gap:12px;align-items:center;width:100%;padding:10px;border-radius:16px;text-align:left;transition:background .15s}
+.it:hover,.it.on{background:var(--hv)}
+.it.on{box-shadow:inset 3px 0 0 var(--ink)}
+.av{position:relative;flex:none;width:46px;height:46px;border-radius:16px;display:grid;place-items:center;color:#fff;font:700 16px var(--fd)}
+.av i{position:absolute;right:-3px;bottom:-3px;width:13px;height:13px;border-radius:50%;background:#29c46b;border:3px solid var(--pn)}
+.mid{flex:1;min-width:0}
+.mid b,.mid small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+small{color:var(--mu);font-size:13px}
+.meta{display:flex;flex-direction:column;gap:4px;align-items:flex-end}
+.bd{min-width:20px;height:20px;padding:0 6px;border-radius:10px;background:var(--lime);color:#10200a;font-size:12px;font-weight:800;display:grid;place-items:center}
+.usr{display:flex;align-items:center;gap:10px;padding:12px 16px;border-top:1px solid var(--ln)}
+.usr b{flex:1}
+.usr .av{width:36px;height:36px;border-radius:12px;font-size:13px}
+#empty{flex:1;display:grid;place-content:center;text-align:center;color:var(--mu);background:var(--cb)}
+#empty h1{margin:0;font-size:96px;letter-spacing:-.05em;line-height:.9;opacity:.2;color:var(--ink)}
+#chat{display:flex;flex-direction:column;flex:1;min-height:0}
+.ch{display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid var(--ln)}
+.ch b{font-size:17px}.ch b,.ch small{display:block}
+#back{display:none}
+#msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:6px;background:var(--cb) radial-gradient(var(--dot) 1.2px,transparent 1.2px) 0 0/22px 22px}
+.dt{align-self:center;margin:10px 0 4px;padding:3px 12px;border-radius:99px;background:var(--pn);color:var(--mu);font-size:12px;font-weight:600}
+.b{max-width:74%;padding:8px 13px;border-radius:20px;background:var(--in);box-shadow:0 1px 1px rgba(0,20,10,.1)}
+.b:not(.end){margin-bottom:-3px}
+.b:last-child{animation:pop .2s ease-out}
+.b em{display:block;font-style:normal;font-size:12px;font-weight:700;color:var(--mu)}
+.tx{white-space:pre-wrap;overflow-wrap:anywhere}
+.tm{display:block;text-align:right;font-size:11px;margin-top:2px}
+.them{align-self:flex-start}.them.end{border-bottom-left-radius:6px}
+.me{align-self:flex-end;background:var(--out);color:var(--oi)}.me.end{border-bottom-right-radius:6px}
+.me .tm{color:var(--oi);opacity:.7}
+.cp{display:flex;gap:8px;align-items:flex-end;padding:10px 12px;border-top:1px solid var(--ln)}
+#inp{flex:1;resize:none;max-height:120px;padding:12px 16px;border:1px solid var(--ln);border-radius:22px;background:var(--hv)}
+#send{width:46px;height:46px;border-radius:50%;background:var(--lime);color:#10200a;display:grid;place-items:center;flex:none;transition:transform .12s}
+@keyframes pop{from{transform:translateY(8px) scale(.95);opacity:0}}
+@media(prefers-reduced-motion:reduce){.b:last-child{animation:none}}
+@media(max-width:720px){#auth{grid-template-columns:1fr;grid-template-rows:38% 1fr}.hero{padding:24px}#app{grid-template-columns:1fr}#main{display:none}#app.open #main{display:flex}#app.open #side{display:none}#back{display:grid}.b{max-width:86%}}
+#toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--pn);padding:10px 16px;border-radius:14px;font-size:14px;max-width:90%;z-index:9}
+#err{margin:0;color:#d64545;font-size:14px;min-height:0}#err:empty{display:none}
+#call,#ring{position:fixed;inset:0;z-index:20;background:#070d0b;color:#eef5e6;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:env(safe-area-inset-top,0px) 16px}
+#ring{background:rgba(5,9,8,.94)}
+#rv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#call:not(.vid) #rv{opacity:0}
+#lv{position:absolute;right:16px;top:calc(16px + env(safe-area-inset-top,0px));width:28vw;max-width:150px;aspect-ratio:3/4;object-fit:cover;border-radius:16px;border:2px solid rgba(255,255,255,.4);background:#000;transform:scaleX(-1);z-index:2}
+#call:not(.vid) #lv{display:none}
+.ci{position:relative;z-index:1;text-align:center}
+.ci h2{margin:8px 0 2px;font-size:28px}
+.ci .av{width:96px;height:96px;font-size:34px;margin:0 auto;border-radius:32px}
+#call.vid .ci{position:absolute;left:16px;top:calc(16px + env(safe-area-inset-top,0px));text-align:left;text-shadow:0 1px 6px #000}
+#call.vid #cav{display:none}
+.ctl{position:absolute;left:0;right:0;bottom:calc(28px + env(safe-area-inset-bottom,0px));display:flex;justify-content:center;gap:18px;z-index:2}
+#ring .ctl{position:static;margin-top:28px}
+.cb{width:60px;height:60px;border-radius:50%;background:rgba(255,255,255,.16);font-size:24px;display:grid;place-items:center;color:#fff}
+.cb.off{background:#fff;color:#000}.cb.red{background:#e5484d}.cb.grn{background:#29c46b}
+</style></head><body>
+<div id="auth" hidden>
+ <div class="hero"><h1>mesaj<b>.</b></h1><p>Hızlı. Sade. Anlık.</p></div>
+ <form id="af"><h2 id="at">Giriş yap</h2>
+  <input id="au" placeholder="Kullanıcı adı" minlength="2" maxlength="30" autocomplete="username">
+  <input id="ae" type="email" placeholder="E-posta" required autocomplete="email">
+  <input id="ap" type="password" placeholder="Şifre" required minlength="6" autocomplete="current-password">
+  <label class="remember-row" id="arm-wrap"><input type="checkbox" id="arm" checked> Beni hatırla</label>
+  <p id="err" role="alert"></p><button class="pri" id="ab">Devam et</button>
+  <button type="button" id="asw" class="lnk">Hesabın yok mu? Kayıt ol</button>
+  <button type="button" id="aanon" class="lnk">Anonim olarak devam et</button>
+ </form>
+</div>
+<div id="app" hidden>
+<aside id="side">
+ <div class="top"><h1>mesaj<b>.</b></h1><button class="ib" id="nb" aria-label="Yeni sohbet">＋</button><button class="ib" id="bell" aria-label="Bildirimler">🔔</button><button class="ib" id="theme" aria-label="Tema">◐</button></div>
+ <form id="nf" hidden><input id="nu" placeholder="Kullanıcı adı yaz" aria-label="Kullanıcı adı"><button class="pri">Başlat</button></form>
+ <input id="q" placeholder="Sohbet ara" aria-label="Sohbet ara">
+ <div id="list"></div>
+ <div class="usr"><div id="mav"></div><b id="mn"></b><button class="lnk" id="out">Çıkış</button></div>
+</aside>
+<main id="main">
+ <div id="empty"><h1>mesaj.</h1><p>Bir sohbet seç ya da ＋ ile yenisini başlat.</p></div>
+ <section id="chat" hidden>
+  <div class="ch"><button class="ib" id="back" aria-label="Geri">‹</button><div id="hav"></div><div><b id="hname"></b><small id="hstat"></small></div><div style="margin-left:auto;display:flex;gap:8px"><button class="ib" id="vc" aria-label="Sesli arama">📞</button><button class="ib" id="vd" aria-label="Görüntülü arama">🎥</button></div></div>
+  <div id="msgs"></div>
+  <div class="cp"><textarea id="inp" rows="1" placeholder="Mesaj yaz" aria-label="Mesaj"></textarea>
+  <button id="send" aria-label="Gönder"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20l18-8L3 4v6l12 2-12 2z"/></svg></button></div>
+ </section>
+</main>
+</div>
+<div id="ring" hidden><div class="ci"><p id="rk"></p><h2 id="rn"></h2></div><div class="ctl"><button class="cb red" id="rrej" aria-label="Reddet">📵</button><button class="cb grn" id="racc" aria-label="Kabul et">📞</button></div></div>
+<div id="call" hidden><video id="rv" autoplay playsinline></video><video id="lv" autoplay playsinline muted></video>
+<div class="ci"><div id="cav"></div><h2 id="cn"></h2><small id="cst" style="color:inherit;opacity:.8"></small></div>
+<div class="ctl"><button class="cb" id="mic" aria-label="Mikrofon">🎤</button><button class="cb" id="cam" aria-label="Kamera">📷</button><button class="cb red" id="hang" aria-label="Kapat">📵</button></div></div>
+<div id="toast" hidden></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script>
+const sb=supabase.createClient('https://iglsahnianpepccjcjdf.supabase.co','sb_publishable_ZauygOn1NwOWUVz-Swb-iw_QLNeC_ye');
+const $=s=>document.querySelector(s);
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const hm=t=>new Date(t).toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'});
+const dl=t=>{const d=new Date(t),n=new Date(),s=x=>x.toDateString();return s(d)===s(n)?'Bugün':s(d)===s(new Date(n-864e5))?'Dün':d.toLocaleDateString('tr-TR',{day:'numeric',month:'long'})};
+const hue=n=>[...n].reduce((a,c)=>a+c.charCodeAt(0)*7,0)%360;
+const av=n=>`<div class="av" style="background:hsl(${hue(n)} 45% 36%)">${esc(n.slice(0,2).toUpperCase())}</div>`;
+const last=c=>c.msgs[c.msgs.length-1],lt=c=>last(c)?last(c).ts:0;
+let me=null,chats=[],cur=null,reg=0,ch=null,isAnon=false;
+const toast=t=>{const e=$('#toast');e.textContent=t;e.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>e.hidden=true,4000)};
+const cv=r=>({id:r.id,f:r.sender_id===me.id?'me':'them',t:r.body,ts:+new Date(r.created_at)});
+
+const savedEmail = localStorage.getItem('remembered_email');
+if (savedEmail) { $('#ae').value = savedEmail; $('#arm').checked = true; }
+
+async function loadChats(){
+ const {data:mine,error}=await sb.from('chat_members').select('chat_id').eq('user_id',me.id);
+ if(error)return toast(error.message);
+ const ids=mine.map(x=>x.chat_id);
+ if(!ids.length){chats=[];return ui()}
+ const [mm,ms]=await Promise.all([
+  sb.from('chat_members').select('chat_id,user_id,profiles(username)').in('chat_id',ids),
+  sb.from('messages').select('id,chat_id,sender_id,body,created_at').in('chat_id',ids).order('created_at',{ascending:false}).limit(500)]);
+ const old=Object.fromEntries(chats.map(c=>[c.id,c.u]));
+ chats=ids.map(id=>{const o=(mm.data||[]).find(x=>x.chat_id===id&&x.user_id!==me.id);
+  return {id,name:(o&&o.profiles&&o.profiles.username)||'Sohbet',u:old[id]||0,msgs:(ms.data||[]).filter(x=>x.chat_id===id).reverse().map(cv)}});
+ ui()}
+
+async function add(r){
+ let c=chats.find(x=>x.id===r.chat_id);
+ if(!c){await loadChats();c=chats.find(x=>x.id===r.chat_id);if(!c)return}
+ if(c.msgs.some(x=>x.id===r.id))return;
+ c.msgs.push(cv(r));
+ if(r.sender_id!==me.id&&cur!==c.id)c.u++;
+ ui();
+}
+
+function live(){
+ if(ch)sb.removeChannel(ch);
+ ch=sb.channel('live')
+ .on('postgres_changes',{event:'INSERT',schema:'public',table:'messages'},p=>add(p.new))
+ .on('postgres_changes',{event:'INSERT',schema:'public',table:'chat_members',filter:'user_id=eq.'+me.id},()=>loadChats())
+ .subscribe();
+}
+
+let bs='';
+const tmo=(p,ms)=>Promise.race([p,new Promise((_,r)=>setTimeout(()=>r(new Error('zaman aşımı')),ms))]);
+async function boot(s){
+ if(!s){if(call)end(false);Object.values(sig).forEach(k=>sb.removeChannel(k));sig={};me=null;chats=[];cur=null;$('#auth').hidden=false;$('#app').hidden=true;return}
+ try{
+  bs='profil';err('Profil yükleniyor…',1);
+  const {data,error}=await tmo(sb.from('profiles').select('id,username').eq('id',s.user.id).maybeSingle(),10000);
+  if(error)throw error;
+  if(!data)throw new Error('profiles tablosunda kayıt bulunamadı');
+  me=data;$('#auth').hidden=true;$('#app').hidden=false;
+  $('#mn').textContent='@'+me.username;$('#mav').innerHTML=av(me.username);
+  bs='sohbetler';await tmo(loadChats(),10000);live();err('');
+  
+  // Uygulama açıldığında otomatik Web Push izni ve kaydı iste
+  autoEnablePush();
+ } catch(x){err('Açılamadı ('+bs+'): '+(x.message||x))}}
+
+sb.auth.onAuthStateChange((ev,s)=>{if(ev==='TOKEN_REFRESHED'||ev==='USER_UPDATED')return;if(s&&me&&me.id===s.user.id)return;setTimeout(()=>boot(s),0)});
+
+function drawList(){const q=$('#q').value.toLowerCase();
+$('#list').innerHTML=chats.filter(c=>c.name.toLowerCase().includes(q)).sort((a,b)=>lt(b)-lt(a)).map(c=>{const l=last(c);
+return `<button class="it${c.id===cur?' on':''}" data-id="${c.id}">${av(c.name)}<div class="mid"><b>${esc(c.name)}</b><small>${l?(l.f==='me'?'Sen: ':'')+esc(l.t):'Yeni sohbet'}</small></div><div class="meta"><small>${l?hm(l.ts):''}</small>${c.u?`<span class="bd">${c.u}</span>`:''}</div></button>`}).join('')||'<p style="text-align:center;color:var(--mu)">Henüz sohbet yok.<br>＋ ile başlat.</p>'}
+
+function drawChat(){const c=chats.find(x=>x.id===cur);$('#empty').hidden=!!c;$('#chat').hidden=!c;if(!c)return;
+$('#hav').innerHTML=av(c.name);$('#hname').textContent=c.name;$('#hstat').textContent='@'+c.name;
+const M=c.msgs,box=$('#msgs');
+box.innerHTML=M.map((x,i)=>{const p=M[i-1],n=M[i+1],sep=!p||dl(p.ts)!==dl(x.ts),end=!n||n.f!==x.f||dl(n.ts)!==dl(x.ts);
+return (sep?`<div class="dt">${dl(x.ts)}</div>`:'')+`<div class="b ${x.f}${end?' end':''}"><span class="tx">${esc(x.t)}</span>${end?`<small class="tm">${hm(x.ts)}${x.f==='me'?' ✓':''}</small>`:''}</div>`}).join('');box.scrollTop=box.scrollHeight}
+
+function ui(){drawList();drawChat();watch()}
+function open(id){cur=id;chats.find(x=>x.id===id).u=0;$('#app').classList.add('open');ui()}
+
+async function send(){
+ const i=$('#inp'),t=i.value.trim();if(!t||!cur)return;i.value='';i.style.height='';
+ const {data,error}=await sb.from('messages').insert({chat_id:cur,body:t}).select().single();
+ if(error){i.value=t;return toast(error.message)}
+ add(data);
+ 
+ // Web Push ile karşı tarafa Mesaj Bildirimi Gönderme
+ sb.functions.invoke('notify',{body:{chat_id:data.chat_id,type:'msg',text:t,title:me.username}});
+}
+
+function updateAuthUI(){
+ $('#au').hidden = !reg && !isAnon;
+ $('#ae').hidden = isAnon; $('#ap').hidden = isAnon;
+ $('#ae').required = !isAnon; $('#ap').required = !isAnon;
+ $('#au').required = isAnon || reg;
+ const armWrap = $('#arm-wrap');
+ if (armWrap) armWrap.style.display = (!reg && !isAnon) ? 'flex' : 'none';
+ if(isAnon){ $('#at').textContent = 'Anonim Giriş'; $('#asw').textContent = 'E-posta ile giriş yap'; $('#aanon').hidden = true; }
+ else { $('#at').textContent = reg ? 'Kayıt ol' : 'Giriş yap'; $('#asw').textContent = reg ? 'Hesabın var mı? Giriş yap' : 'Hesabın yok mu? Kayıt ol'; $('#aanon').hidden = false; }
+}
+
+$('#asw').onclick=()=>{ isAnon = false; reg = !reg; updateAuthUI(); };
+$('#aanon').onclick=()=>{ isAnon = true; reg = false; updateAuthUI(); };
+updateAuthUI();
+
+const err=(t,ok)=>{const e=$('#err');e.textContent=t||'';e.style.color=ok?'var(--mu)':''};
+$('#af').onsubmit=async e=>{e.preventDefault();err();const b=$('#ab');b.disabled=true;b.textContent='Bekle…';
+ try{
+  if(isAnon){
+   const username=$('#au').value.trim();if(username.length<2)throw new Error('Kullanıcı adı en az 2 karakter olmalı');
+   const r=await sb.auth.signInAnonymously({options:{data:{username}}});if(r.error)throw r.error;
+  } else {
+   const email=$('#ae').value.trim(),password=$('#ap').value;let r;
+   if($('#arm').checked) localStorage.setItem('remembered_email', email); else localStorage.removeItem('remembered_email');
+   if(reg){const username=$('#au').value.trim();if(username.length<2)throw new Error('Kullanıcı adı en az 2 karakter olmalı');
+    r=await sb.auth.signUp({email,password,options:{data:{username}}})}
+   else { r=await sb.auth.signInWithPassword({email,password}); }
+   if(r.error)throw r.error;
+  }
+ } catch(x){err((isAnon?'Anonim giriş olmadı: ':(reg?'Kayıt olmadı: ':'Giriş olmadı: '))+(x.message||x))}
+ finally{b.disabled=false;b.textContent='Devam et'}};
+
+$('#out').onclick=async()=>{await sb.auth.signOut();$('#app').classList.remove('open')};
+$('#nb').onclick=()=>{$('#nf').hidden=!$('#nf').hidden;$('#nu').focus()};
+$('#nf').onsubmit=async e=>{e.preventDefault();const n=$('#nu').value.trim().replace(/^@/,'');if(!n)return;
+ const {data,error}=await sb.rpc('start_dm',{other:n});if(error)return toast(error.message);
+ $('#nu').value='';$('#nf').hidden=true;await loadChats();open(data)};
+$('#list').onclick=e=>{const b=e.target.closest('.it');if(b)open(b.dataset.id)};
+$('#back').onclick=()=>{cur=null;$('#app').classList.remove('open');ui()};
+$('#q').oninput=drawList;
+$('#send').onclick=send;
+$('#inp').oninput=e=>{e.target.style.height='auto';e.target.style.height=Math.min(e.target.scrollHeight,120)+'px'};
+$('#inp').onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey&&!matchMedia('(pointer:coarse)').matches){e.preventDefault();send()}};
+$('#theme').onclick=()=>{const r=document.documentElement,d=(r.dataset.theme||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'))==='dark';r.dataset.theme=d?'light':'dark'};
+
+// ---- SESLİ / GÖRÜNTÜLÜ ARAMA ----
+const ICE={iceServers:[{urls:'stun:stun.l.google.com:19302'},{urls:'stun:stun1.l.google.com:19302'}]};
+let sig={},call=null,ring=null,ringT=null,dialT=null,tickT=null,endedAt={};
+function watch(){chats.forEach(c=>{if(sig[c.id])return;const k=sb.channel('call-'+c.id);k.on('broadcast',{event:'s'},({payload:p})=>onSig(c,p)).subscribe();sig[c.id]=k})}
+const tx=(cid,p)=>sig[cid]&&sig[cid].send({type:'broadcast',event:'s',payload:p});
+const st=t=>{$('#cst').textContent=t};
+const media=v=>navigator.mediaDevices.getUserMedia({audio:true,video:v?{facingMode:'user'}:false});
+
+function mkpc(cid){const pc=new RTCPeerConnection(ICE);call.pc=pc;
+ call.stream.getTracks().forEach(t=>pc.addTrack(t,call.stream));
+ pc.onicecandidate=e=>{if(e.candidate)tx(cid,{t:'ice',c:e.candidate})};
+ pc.ontrack=e=>{$('#rv').srcObject=e.streams[0]};
+ pc.onconnectionstatechange=()=>{if(!call)return;if(pc.connectionState==='connected')up();if(pc.connectionState==='failed')end(true,'Bağlantı kurulamadı')};}
+
+function show(){$('#call').hidden=false;$('#call').classList.toggle('vid',call.video);$('#cam').hidden=!call.video;
+ $('#cav').innerHTML=av(call.name);$('#cn').textContent=call.name;$('#lv').srcObject=call.stream;
+ $('#mic').classList.remove('off');$('#cam').classList.remove('off')}
+
+function up(){if(call.on)return;stopRing();call.on=Date.now();clearTimeout(dialT);st('00:00');
+ tickT=setInterval(()=>{if(!call)return;const n=(Date.now()-call.on)/1e3|0;st(String(n/60|0).padStart(2,'0')+':'+String(n%60).padStart(2,'0'))},1000)}
+
+function end(notify,msg){if(!call)return;stopRing();clearInterval(call.re);clearTimeout(dialT);clearInterval(tickT);if(notify)tx(call.cid,{t:'end'});
+ call.stream.getTracks().forEach(t=>t.stop());if(call.pc)call.pc.close();
+ $('#rv').srcObject=null;$('#lv').srcObject=null;$('#call').hidden=true;call=null;if(msg)toast(msg)}
+
+async function dial(v){const c=chats.find(x=>x.id===cur);if(!c||call||ring)return;
+ try{const stream=await media(v);call={cid:c.id,name:c.name,video:v,stream,out:true,q:[]};show();st('Aranıyor…');
+  tx(c.id,{t:'invite',v});ringtone('out');call.re=setInterval(()=>tx(c.id,{t:'invite',v}),3000);
+  
+  // Aranan kişiye Web Push Arama Bildirimi Gönder
+  sb.functions.invoke('notify',{body:{chat_id:c.id,type:'call',text:v?'Görüntülü Arama':'Sesli Arama',title:me.username}});
+  dialT=setTimeout(()=>end(true,'Cevap yok'),45000)}
+ catch(e){call=null;toast('Mikrofon/kamera izni gerekli: '+e.message)}}
+
+async function flush(){while(call&&call.q.length)await call.pc.addIceCandidate(call.q.shift()).catch(()=>{})}
+async function onSig(c,p){
+ if(p.t==='invite'){if(Date.now()-(endedAt[c.id]||0)<6000)return;if((call&&call.cid===c.id)||(ring&&ring.cid===c.id))return;if(call||ring){tx(c.id,{t:'busy'});return}
+  ring={cid:c.id,v:p.v,name:c.name};$('#rn').textContent=c.name;$('#rk').textContent=p.v?'Görüntülü arama':'Sesli arama';$('#ring').hidden=false;
+  if(navigator.vibrate)navigator.vibrate([300,200,300]);
+  ringtone('in');
+  ringT=setTimeout(()=>{ring=null;stopRing();$('#ring').hidden=true},60000);return}
+ if(p.t==='end'){endedAt[c.id]=Date.now();if(ring&&ring.cid===c.id){ring=null;stopRing();clearTimeout(ringT);$('#ring').hidden=true}
+  if(call&&call.cid===c.id)end(false,'Arama bitti');return}
+ if(!call||call.cid!==c.id)return;
+ if(p.t==='busy'||p.t==='reject')return end(false,p.t==='busy'?'Meşgul':'Arama reddedildi');
+ if(p.t==='accept'&&call.out){stopRing();clearInterval(call.re);clearTimeout(dialT);st('Bağlanıyor…');mkpc(c.id);const o=await call.pc.createOffer();await call.pc.setLocalDescription(o);tx(c.id,{t:'offer',d:o})}
+ else if(p.t==='offer'&&call.pc){await call.pc.setRemoteDescription(p.d);await flush();const a=await call.pc.createAnswer();await call.pc.setLocalDescription(a);tx(c.id,{t:'answer',d:a})}
+ else if(p.t==='answer'&&call.pc){await call.pc.setRemoteDescription(p.d);await flush()}
+ else if(p.t==='ice'){if(call.pc&&call.pc.remoteDescription)call.pc.addIceCandidate(p.c).catch(()=>{});else call.q.push(p.c)}}
+
+$('#racc').onclick=async()=>{if(!ring)return;const r=ring;ring=null;stopRing();clearTimeout(ringT);$('#ring').hidden=true;
+ try{const stream=await media(r.v);call={cid:r.cid,name:r.name,video:r.v,stream,out:false,q:[]};mkpc(r.cid);show();st('Bağlanıyor…');tx(r.cid,{t:'accept'})}
+ catch(e){tx(r.cid,{t:'reject'});call=null;toast('Mikrofon/kamera izni gerekli: '+e.message)}};
+$('#rrej').onclick=()=>{if(!ring)return;endedAt[ring.cid]=Date.now();tx(ring.cid,{t:'reject'});ring=null;stopRing();clearTimeout(ringT);$('#ring').hidden=true};
+
+const tog=(k,b)=>{if(!call)return;const t=call.stream[k]()[0];if(t){t.enabled=!t.enabled;b.classList.toggle('off',!t.enabled)}};
+$('#mic').onclick=e=>tog('getAudioTracks',e.currentTarget);
+$('#cam').onclick=e=>tog('getVideoTracks',e.currentTarget);
+$('#hang').onclick=()=>end(true);
+$('#vc').onclick=()=>dial(false);
+$('#vd').onclick=()=>dial(true);
+
+// ---- ZİL SESİ ----
+let ac=null,rt=null;
+const unlock=()=>{try{ac=ac||new(window.AudioContext||window.webkitAudioContext)();if(ac.state==='suspended')ac.resume()}catch(e){}};
+['pointerdown','keydown','touchstart'].forEach(v=>addEventListener(v,unlock,{passive:true}));
+function beep(f,t,d,v){const o=ac.createOscillator(),g=ac.createGain(),T=ac.currentTime+t;o.frequency.value=f;
+ g.gain.setValueAtTime(0,T);g.gain.linearRampToValueAtTime(v,T+.02);g.gain.setValueAtTime(v,T+d-.03);g.gain.linearRampToValueAtTime(0,T+d);
+ o.connect(g);g.connect(ac.destination);o.start(T);o.stop(T+d+.02)}
+function ringtone(kind){stopRing();unlock();if(!ac)return;
+ if(kind==='in')document.title='📞 Gelen arama!';
+ const play=()=>{if(ac.state!=='running')ac.resume();
+  if(kind==='in')[0,.25,.9,1.15].forEach((t,i)=>beep(i%2?880:698,t,.2,.3));else beep(425,0,1,.15)};
+ play();rt=setInterval(play,kind==='in'?2200:3000)}
+function stopRing(){clearInterval(rt);rt=null;document.title='mesaj.'}
+
+// ---- WEB PUSH & BİLDİRİM İZNİ ENTEGRASYONU ----
+const VAPID="BL7cDzj2MThaZmoY3I-rIiHpaz6RfyJufYy8p0cmgdERjJuOKL-iTDjMg5zQpkfVjbZnXg5Qz0tjqKL5nL2zJ_c";
+
+if('serviceWorker' in navigator) {
+ navigator.serviceWorker.register('sw.js').catch(()=>{});
+}
+
+const u8=b=>{const r=atob((b+'='.repeat((4-b.length%4)%4)).replace(/-/g,'+').replace(/_/g,'/'));return Uint8Array.from(r,c=>c.charCodeAt(0))};
+
+async function enablePush(silent = false){
+ try{
+  if(!('serviceWorker' in navigator)||!('PushManager' in window)) {
+   if(!silent) toast(/iPhone|iPad/.test(navigator.userAgent)?"iOS'ta önce Ana Ekrana Ekle yapmalısınız.":"Bu tarayıcı bildirimleri desteklemiyor.");
+   return;
+  }
+  
+  const perm = await Notification.requestPermission();
+  if(perm !== 'granted') {
+   if(!silent) toast('Bildirim izni verilmedi.');
+   return;
+  }
+
+  const reg = await navigator.serviceWorker.ready;
+  const sub = (await reg.pushManager.getSubscription()) || await reg.pushManager.subscribe({userVisibleOnly:true, applicationServerKey:u8(VAPID)});
+  const j = sub.toJSON();
+
+  if (me) {
+   await sb.from('push_subscriptions').upsert({endpoint:j.endpoint, user_id:me.id, p256dh:j.keys.p256dh, auth:j.keys.auth}, {onConflict:'endpoint'});
+  }
+
+  if(!silent) toast('Bildirimler aktif ✓');
+ } catch(e){
+  if(!silent) toast('Bildirim hatası: ' + (e.message || e));
+ }
+}
+
+function autoEnablePush() {
+ if ('Notification' in window && (Notification.permission === 'default' || Notification.permission === 'granted')) {
+  enablePush(true);
+ }
+}
+
+$('#bell').onclick = () => enablePush(false);
+</script></body></html>
